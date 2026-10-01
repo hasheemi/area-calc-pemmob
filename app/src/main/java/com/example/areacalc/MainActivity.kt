@@ -1,37 +1,80 @@
 package com.example.areacalc
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
+/**
+ * Halaman menu utama / Home.
+ * Berisi tombol-tombol menu untuk mengakses fitur CRUD.
+ */
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val etPanjang = findViewById<EditText>(R.id.etPanjang)
-        val etLebar = findViewById<EditText>(R.id.etLebar)
-        val btnHitung = findViewById<Button>(R.id.btnHitung)
-        val tvHasil = findViewById<TextView>(R.id.tvHasil)
+        val btnTambahAnggota = findViewById<Button>(R.id.btnTambahAnggota)
+        val btnLihatAnggota = findViewById<Button>(R.id.btnLihatAnggota)
+        val btnEditAnggota = findViewById<Button>(R.id.btnEditAnggota)
+        val btnHapusAnggota = findViewById<Button>(R.id.btnHapusAnggota)
+        val btnTentang = findViewById<Button>(R.id.btnTentang)
+        val btnKeluar = findViewById<Button>(R.id.btnKeluar)
 
-        btnHitung.setOnClickListener {
-            val panjangText = etPanjang.text.toString()
-            val lebarText = etLebar.text.toString()
+        // Tambah Anggota
+        btnTambahAnggota.setOnClickListener {
+            startActivity(Intent(this, AddActivity::class.java))
+        }
 
-            if (panjangText.isEmpty() || lebarText.isEmpty()) {
-                Toast.makeText(this, "Masukkan panjang dan lebar", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
+        // Lihat Anggota
+        btnLihatAnggota.setOnClickListener {
+            val intent = Intent(this, ListActivity::class.java)
+            intent.putExtra(ListActivity.EXTRA_MODE, ListActivity.MODE_LIHAT)
+            startActivity(intent)
+        }
 
-            val panjang = panjangText.toDouble()
-            val lebar = lebarText.toDouble()
-            val luas = panjang * lebar
+        // Edit Anggota -> buka list dalam mode edit
+        btnEditAnggota.setOnClickListener {
+            val intent = Intent(this, ListActivity::class.java)
+            intent.putExtra(ListActivity.EXTRA_MODE, ListActivity.MODE_EDIT)
+            startActivity(intent)
+        }
 
-            tvHasil.text = "Luas: $luas"
+        // Hapus Anggota -> buka list dalam mode hapus
+        btnHapusAnggota.setOnClickListener {
+            val intent = Intent(this, ListActivity::class.java)
+            intent.putExtra(ListActivity.EXTRA_MODE, ListActivity.MODE_HAPUS)
+            startActivity(intent)
+        }
+
+        // Tentang Aplikasi
+        btnTentang.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Tentang Aplikasi")
+                .setMessage(
+                    "Aplikasi Pendaftaran Anggota UKM Voli ITS\n\n" +
+                            "Dibuat menggunakan:\n" +
+                            "- Kotlin\n" +
+                            "- SQLite (SQLiteOpenHelper)\n" +
+                            "- RecyclerView\n\n" +
+                            "Versi 1.0"
+                )
+                .setPositiveButton("Tutup", null)
+                .show()
+        }
+
+        // Keluar
+        btnKeluar.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Konfirmasi")
+                .setMessage("Yakin ingin keluar dari aplikasi?")
+                .setPositiveButton("Ya") { _, _ ->
+                    finishAffinity()
+                }
+                .setNegativeButton("Tidak", null)
+                .show()
         }
     }
 }

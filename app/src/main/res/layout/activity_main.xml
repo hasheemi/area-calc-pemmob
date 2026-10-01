@@ -1,41 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp">
+    android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/etPanjang"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Panjang"
-        android:inputType="numberDecimal" />
-
-    <EditText
-        android:id="@+id/etLebar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="Lebar"
-        android:inputType="numberDecimal" />
-
-    <Button
-        android:id="@+id/btnHitung"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Hitung Luas" />
-
-    <TextView
-        android:id="@+id/tvHasil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:orientation="vertical"
         android:gravity="center"
-        android:text="Luas: -"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:padding="24dp">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvJudul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Pendaftaran UKM Voli ITS"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSubJudul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="Menu Utama"
+            android:textColor="#2B2B2E"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnTambahAnggota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Tambah Anggota" />
+
+        <Button
+            android:id="@+id/btnLihatAnggota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Lihat Anggota" />
+
+        <Button
+            android:id="@+id/btnEditAnggota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Edit Anggota" />
+
+        <Button
+            android:id="@+id/btnHapusAnggota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Hapus Anggota" />
+
+        <Button
+            android:id="@+id/btnTentang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Tentang Aplikasi" />
+
+        <Button
+            android:id="@+id/btnKeluar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Keluar" />
+
+    </LinearLayout>
+
+</ScrollView>

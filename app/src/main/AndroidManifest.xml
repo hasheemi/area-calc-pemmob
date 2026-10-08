@@ -16,15 +16,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CardActivity" android:exported="false" />
+        <activity android:name=".FormActivity" android:exported="false" />
 
-        <activity android:name=".AddActivity" android:exported="false" />
-
-        <activity android:name=".ListActivity" android:exported="false" />
-
-        <activity android:name=".EditActivity" android:exported="false" />
-
-        <activity android:name=".DeleteActivity" android:exported="false" />
+        <activity android:name=".DetailActivity" android:exported="false" />
 
     </application>
 </manifest>

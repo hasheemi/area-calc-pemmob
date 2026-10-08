@@ -7,15 +7,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 /**
- * Activity untuk menambah data anggota baru (Create).
+ * Halaman form untuk menambah atau mengedit anggota.
  */
-class AddActivity : AppCompatActivity() {
+class FormActivity : AppCompatActivity() {
+
+    companion object {
+        const val EXTRA_ID = "id"
+    }
 
     private lateinit var db: DatabaseHelper
+    private var anggotaId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add)
+        setContentView(R.layout.activity_form)
 
         db = DatabaseHelper(this)
 
@@ -25,30 +30,40 @@ class AddActivity : AppCompatActivity() {
         val btnSimpan = findViewById<Button>(R.id.btnSimpan)
         val btnBatal = findViewById<Button>(R.id.btnBatal)
 
+        anggotaId = intent.getIntExtra(EXTRA_ID, 0)
+
+        if (anggotaId != 0) {
+            title = "Edit Anggota"
+            db.getAnggotaById(anggotaId)?.let { anggota ->
+                etNama.setText(anggota.nama)
+                etJurusan.setText(anggota.jurusan)
+                etPosisi.setText(anggota.posisi)
+            }
+        } else {
+            title = "Tambah Anggota"
+        }
+
         btnSimpan.setOnClickListener {
             val nama = etNama.text.toString().trim()
             val jurusan = etJurusan.text.toString().trim()
             val posisi = etPosisi.text.toString().trim()
 
-            // Validasi input tidak boleh kosong
             if (nama.isEmpty() || jurusan.isEmpty() || posisi.isEmpty()) {
                 Toast.makeText(this, "Semua field harus diisi!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val anggota = Anggota(
-                nama = nama,
-                jurusan = jurusan,
-                posisi = posisi
-            )
+            val anggota = Anggota(id = anggotaId, nama = nama, jurusan = jurusan, posisi = posisi)
 
-            val hasil = db.insertAnggota(anggota)
-            if (hasil != -1L) {
+            if (anggotaId == 0) {
+                db.insertAnggota(anggota)
                 Toast.makeText(this, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
-                finish()
             } else {
-                Toast.makeText(this, "Gagal menyimpan data!", Toast.LENGTH_SHORT).show()
+                db.updateAnggota(anggota)
+                Toast.makeText(this, "Data berhasil diperbarui", Toast.LENGTH_SHORT).show()
             }
+
+            finish()
         }
 
         btnBatal.setOnClickListener {

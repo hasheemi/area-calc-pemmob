@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">UKM Voli ITS</string>
+    <string name="app_name">Pemmobcam</string>
+    <string name="saved_photos">Saved Photo</string>
+    <string name="take_photo">Trigger</string>
+    <string name="photo_mode">PHOTO · 1×</string>
+    <string name="switch_camera">Switch Camera</string>
+    <string name="camera_permission_required">Camera permission is required. Tap the shutter to retry, or enable it in Settings.</string>
+    <string name="camera_error">Unable to open the camera. Tap the shutter to retry.</string>
+    <string name="save_error">Could not save the photo. Check storage access and available space.</string>
+    <string name="photo_saved">Saved to DCIM/pemmobcam/%1$s</string>
+    <string name="gallery_empty">No photos in DCIM/pemmobcam yet.</string>
+    <string name="gallery_error">Could not load photos. Check photo access in Settings.</string>
+    <string name="gallery_access">Allow photo access</string>
+    <string name="gallery_limited">Only accessible photos are shown. Allow photo access to include other photos in this folder.</string>
+    <string name="back_to_camera">Back to camera</string>
+    <string name="no_viewer">No image viewer is installed.</string>
+    <string name="auto_flash_on">Too dark — flash turned on automatically</string>
+    <string name="auto_flash_off">Bright enough — flash turned off</string>
+    <string name="auto_flash_unavailable">Flash is not available on this camera</string>
 </resources>

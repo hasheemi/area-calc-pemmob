@@ -1,50 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:background="#202124"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="UKM Voli ITS"
-        android:textColor="@color/navy"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="center"
-        android:text="Daftar Anggota"
-        android:textSize="16sp" />
-
-    <ListView
-        android:id="@+id/lvAnggota"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="3"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tvKosong"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/preview_background"
+            android:clipToOutline="true">
+
+            <androidx.camera.view.PreviewView
+                android:id="@+id/previewView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:implementationMode="compatible" />
+
+            <com.example.areacalc.TiltOverlayView
+                android:id="@+id/tiltOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="#303238"
         android:gravity="center"
-        android:text="Belum ada anggota."
-        android:textSize="16sp"
-        android:visibility="gone" />
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp">
 
-    <Button
-        android:id="@+id/btnTambah"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Tambah Anggota" />
+        <Button
+            android:id="@+id/galleryButton"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:text="@string/saved_photos"
+            android:textColor="#FFFFFF" />
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/photo_mode"
+                android:textColor="#FFD54F"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/sensorStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textColor="#B0BEC5"
+                android:textSize="11sp"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/shutterButton"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@drawable/shutter_background"
+                android:contentDescription="@string/take_photo" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/switchButton"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:minHeight="48dp"
+            android:text="@string/switch_camera"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
 </LinearLayout>
